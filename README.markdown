@@ -5,12 +5,21 @@
 [`smallcheck`](https://hackage.haskell.org/package/smallcheck) properties
 ported from
 [`lens-properties`](https://hackage.haskell.org/package/lens-properties)
-and [`tasty`](https://hackage.haskell.org/package/tasty tasty) test trees
-to validate `Lens`es, `Setter`s, `Traversal`s, `Iso`s and `Prism`s.
+to validate:
 
-Most likely, you will only need the `Test.Tasty.SmallCheck.Lens` module,
-which includes test trees ready to be run.
+- `Lens`
+- `Setter`
+- `Traversal`
+- `Iso`
+- `Prism`
 
-Check the
-[tests](https://github.com/jdnavarro/smallcheck-lens/blob/master/tests/tasty.hs)
-in this package for examples.
+Use this package to create your own fine tuned `smallcheck` tests. For
+preassembled test runners with minimal setup and sensible defaults, you can use
+[`tasty-lens`](https://hackage.haskell.org/package/tasty-lens).
+
+## Contact
+
+Contributions and bug reports are welcome!
+
+Please feel free to contact jdnavarro on the #haskell IRC channel on
+irc.freenode.net.
