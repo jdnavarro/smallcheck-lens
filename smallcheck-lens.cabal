@@ -31,3 +31,6 @@ library
                        lens >=4.1.2.1,
                        smallcheck >=1.1.1,
                        smallcheck-series >=0.3
+
+  if impl(ghc < 7.8)
+     build-depends: tagged >=0.7.2

@@ -8,14 +8,16 @@
 --
 module Test.SmallCheck.Lens.Traversal where
 
+#if MIN_VERSION_base(4,8,0)
 import Prelude hiding (pure)
 import qualified Prelude (pure)
-import Data.Proxy
-#if !MIN_VERSION_base(4,8,0)
-import Control.Applicative (Applicative, pure)
+#else
+import Control.Applicative (Applicative)
+import qualified Control.Applicative as Prelude (pure)
 #endif
-import Control.Lens
+import Data.Proxy (Proxy)
 import Data.Functor.Compose (Compose(..), getCompose)
+import Control.Lens
 import Test.SmallCheck (Property)
 import qualified Test.SmallCheck as SC (over)
 import Test.SmallCheck.Series (Serial, Series)
