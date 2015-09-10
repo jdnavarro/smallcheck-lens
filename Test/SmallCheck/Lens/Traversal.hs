@@ -2,8 +2,14 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+-- | This module is intended to be imported @qualified@, for example:
+--
+-- > import qualified Test.SmallCheck.Lens.Traversal as Traversal
+--
 module Test.SmallCheck.Lens.Traversal where
 
+import Prelude hiding (pure)
+import qualified Prelude (pure)
 #if !MIN_VERSION_base(4,8,0)
 import Control.Applicative (Applicative, pure)
 #endif
@@ -14,17 +20,17 @@ import qualified Test.SmallCheck as SC (over)
 import Test.SmallCheck.Series (Serial, Series)
 import Test.SmallCheck.Series.Utils (zipLogic3)
 
-traversePure
+pure
   :: forall m f s a. (Monad m, Show s, Applicative f, Eq (f s))
   => LensLike' f s a -> Series m s -> Property m
-traversePure l ss = SC.over ss $ \s -> l pure s == (pure s :: f s)
+pure l ss = SC.over ss $ \s -> l Prelude.pure s == (Prelude.pure s :: f s)
 
-traversePureMaybe
+pureMaybe
   :: (Monad m, Show s, Eq s)
   => LensLike' Maybe s a -> Series m s -> Property m
-traversePureMaybe = traversePure
+pureMaybe = pure
 
-traverseCompose
+composition
   :: ( Monad m, Show s, Show a, Show (f a), Show (g a)
      , Applicative f, Applicative g, Eq (g (f s)), Serial Identity a
      )
@@ -33,5 +39,20 @@ traverseCompose
   -> Series m (a -> f a)
   -> Series m (a -> g a)
   -> Property m
-traverseCompose t ss fs gs = SC.over (zipLogic3 ss fs gs) $ \(s,f,g) ->
+composition t ss fs gs =
+    SC.over ss $ \s ->
+        SC.over fs $ \f ->
+            SC.over gs $ \g ->
+    (fmap (t f) . t g) s == (getCompose . t (Compose . fmap f . g)) s
+
+compositionSum
+  :: ( Monad m, Show s, Show a, Show (f a), Show (g a)
+     , Applicative f, Applicative g, Eq (g (f s)), Serial Identity a
+     )
+  => Traversal' s a
+  -> Series m s
+  -> Series m (a -> f a)
+  -> Series m (a -> g a)
+  -> Property m
+compositionSum t ss fs gs = SC.over (zipLogic3 ss fs gs) $ \(s,f,g) ->
     (fmap (t f) . t g) s == (getCompose . t (Compose . fmap f . g)) s

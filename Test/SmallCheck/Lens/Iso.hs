@@ -1,4 +1,8 @@
 {-# LANGUAGE RankNTypes #-}
+-- | This module is intended to be imported @qualified@, for example:
+--
+-- > import qualified Test.SmallCheck.Lens.Iso as Iso
+--
 module Test.SmallCheck.Lens.Iso where
 
 import Control.Lens
@@ -6,13 +10,13 @@ import Test.SmallCheck (Property)
 import qualified Test.SmallCheck as SC (over)
 import Test.SmallCheck.Series (Series, Serial)
 
-isoHither
+hither
   :: (Eq s, Show s, Eq a, Show a, Serial m a)
   => AnIso' s a -> Series m s -> Property m
-isoHither l ss = SC.over ss $ \s ->
+hither l ss = SC.over ss $ \s ->
     s ^. cloneIso l . from l == s
 
-isoYon
+yon
   :: (Eq s, Show s, Eq a, Show a, Serial m a)
   => AnIso' s a -> Series m a -> Property m
-isoYon l as = SC.over as $ \a -> a ^. from l . cloneIso l == a
+yon l as = SC.over as $ \a -> a ^. from l . cloneIso l == a
