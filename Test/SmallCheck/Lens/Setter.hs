@@ -1,4 +1,5 @@
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE RankNTypes #-}
 -- | This module is intended to be imported @qualified@, for example:
 --
 -- > import qualified Test.SmallCheck.Lens.Setter as Setter
@@ -12,12 +13,12 @@ import Test.SmallCheck.Series.Utils (zipLogic3)
 
 identity
   :: (Eq s, Monad m, Show s)
-  => ASetter' s a -> Series m s -> Property m
+  => Setter' s a -> Series m s -> Property m
 identity l se = SC.over se $ \s -> over l id s == s
 
 setSet
   :: (Monad m, Eq s, Show s, Show a)
-  => ASetter' s a -> Series m s -> Series m a -> Series m a -> Property m
+  => Setter' s a -> Series m s -> Series m a -> Series m a -> Property m
 setSet l ss as bs =
     SC.over ss $ \s ->
         SC.over as $ \a ->
@@ -26,7 +27,7 @@ setSet l ss as bs =
 
 composition
   :: (Monad m, Eq s, Show s, Show a, Serial Identity a)
-  => ASetter' s a
+  => Setter' s a
   -> Series m s
   -> Series m (a -> a)
   -> Series m (a -> a)
@@ -39,7 +40,7 @@ composition l ss fs gs =
 
 compositionSum
   :: (Monad m, Eq s, Show s, Show a, Serial Identity a)
-  => ASetter' s a
+  => Setter' s a
   -> Series m s
   -> Series m (a -> a)
   -> Series m (a -> a)

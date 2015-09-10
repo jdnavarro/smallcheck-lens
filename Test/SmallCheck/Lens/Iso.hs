@@ -12,11 +12,11 @@ import Test.SmallCheck.Series (Series, Serial)
 
 hither
   :: (Eq s, Show s, Eq a, Show a, Serial m a)
-  => AnIso' s a -> Series m s -> Property m
+  => Iso' s a -> Series m s -> Property m
 hither l ss = SC.over ss $ \s ->
-    s ^. cloneIso l . from l == s
+    s ^. l . from l == s
 
 yon
   :: (Eq s, Show s, Eq a, Show a, Serial m a)
-  => AnIso' s a -> Series m a -> Property m
-yon l as = SC.over as $ \a -> a ^. from l . cloneIso l == a
+  => Iso' s a -> Series m a -> Property m
+yon l as = SC.over as $ \a -> a ^. from l . l == a

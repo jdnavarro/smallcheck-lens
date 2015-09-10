@@ -10,6 +10,7 @@ module Test.SmallCheck.Lens.Traversal where
 
 import Prelude hiding (pure)
 import qualified Prelude (pure)
+import Data.Proxy
 #if !MIN_VERSION_base(4,8,0)
 import Control.Applicative (Applicative, pure)
 #endif
@@ -22,8 +23,8 @@ import Test.SmallCheck.Series.Utils (zipLogic3)
 
 pure
   :: forall m f s a. (Monad m, Show s, Applicative f, Eq (f s))
-  => LensLike' f s a -> Series m s -> Property m
-pure l ss = SC.over ss $ \s -> l Prelude.pure s == (Prelude.pure s :: f s)
+  => Proxy f -> Traversal' s a -> Series m s -> Property m
+pure _ l ss = SC.over ss $ \s -> l Prelude.pure s == (Prelude.pure s :: f s)
 
 composition
   :: ( Monad m, Show s, Show a, Show (f a), Show (g a)
