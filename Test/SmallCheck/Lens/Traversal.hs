@@ -25,11 +25,6 @@ pure
   => LensLike' f s a -> Series m s -> Property m
 pure l ss = SC.over ss $ \s -> l Prelude.pure s == (Prelude.pure s :: f s)
 
-pureMaybe
-  :: (Monad m, Show s, Eq s)
-  => LensLike' Maybe s a -> Series m s -> Property m
-pureMaybe = pure
-
 composition
   :: ( Monad m, Show s, Show a, Show (f a), Show (g a)
      , Applicative f, Applicative g, Eq (g (f s)), Serial Identity a
