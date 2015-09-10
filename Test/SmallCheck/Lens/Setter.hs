@@ -25,6 +25,13 @@ setSet l ss as bs =
             SC.over bs $ \b ->
     set l b (set l a s) == set l b s
 
+setSetSum
+  :: (Monad m, Eq s, Show s, Show a)
+  => Setter' s a -> Series m s -> Series m a -> Series m a -> Property m
+setSetSum l ss as bs =
+    SC.over (zipLogic3 ss as bs) $ \(s,a,b) ->
+        set l b (set l a s) == set l b s
+
 composition
   :: (Monad m, Eq s, Show s, Show a, Serial Identity a)
   => Setter' s a
