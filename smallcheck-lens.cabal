@@ -1,5 +1,5 @@
 name:                smallcheck-lens
-version:             0.1
+version:             0.3
 synopsis:            SmallCheck properties for lens
 description:
   @smallcheck@ properties for @Lens@es, @Setter@s, @Traversal@s, @Iso@s and @Prism@s.

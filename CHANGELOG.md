@@ -5,7 +5,15 @@ CHANGELOG](http://keepachangelog.com/). This project adheres to [Semantic
 Versioning](http://semver.org/).
 
 [Unreleased][unreleased]
+### Changed
+- More sensible function names assuming qualified imports.
+
+### Added
+- *Exhaustive* property testing using `Series` product. Previous
+  properties renamed appending `Sum`.
+
 ### Removed
+- Main re-export module.
 - Move `Tasty` modules to a separate package
   [`tasty-lens`](https://hackage.haskell.org/package/tasty-lens).
 
