@@ -4,7 +4,7 @@ follows the formatting recommendations from [Keep a
 CHANGELOG](http://keepachangelog.com/). This project adheres to [Semantic
 Versioning](http://semver.org/).
 
-[0.3] - 2015-09-11
+## [0.3] - 2015-09-11
 ### Changed
 - More sensible function names assuming qualified imports.
 - Pass functor to use in `Traversal` as a `Proxy` instead of hardcoding
@@ -27,5 +27,5 @@ Versioning](http://semver.org/).
 - `tasty` test trees for each `Lens` type.
 - Tests for some `Lens`.
 
-[0.3]: https://github.com/jdnavarro/smallcheck-series/compare/v0.1...v0.3
-[0.1]: https://github.com/jdnavarro/smallcheck-series/compare/1df060...v0.1
+[0.3]: https://github.com/jdnavarro/smallcheck-lens/compare/v0.1...v0.3
+[0.1]: https://github.com/jdnavarro/smallcheck-lens/compare/1df060...v0.1
