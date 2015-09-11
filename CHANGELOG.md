@@ -4,9 +4,12 @@ follows the formatting recommendations from [Keep a
 CHANGELOG](http://keepachangelog.com/). This project adheres to [Semantic
 Versioning](http://semver.org/).
 
-[Unreleased][unreleased]
+[0.3] - 2015-09-11
 ### Changed
 - More sensible function names assuming qualified imports.
+- Pass functor to use in `Traversal` as a `Proxy` instead of hardcoding
+  the functors.
+- Rank-2 `Lens-Like` everywhere.
 
 ### Added
 - *Exhaustive* property testing using `Series` product. Previous
@@ -16,6 +19,7 @@ Versioning](http://semver.org/).
 - Main re-export module.
 - Move `Tasty` modules to a separate package
   [`tasty-lens`](https://hackage.haskell.org/package/tasty-lens).
+- `pureMaybe`. Now a `Proxy functor` is used.
 
 ## [0.1] - 2015-05-27
 ### Added
@@ -23,5 +27,5 @@ Versioning](http://semver.org/).
 - `tasty` test trees for each `Lens` type.
 - Tests for some `Lens`.
 
-[unreleased]: https://github.com/jdnavarro/smallcheck-series/compare/v0.1...HEAD
+[0.3]: https://github.com/jdnavarro/smallcheck-series/compare/v0.1...v0.3
 [0.1]: https://github.com/jdnavarro/smallcheck-series/compare/1df060...v0.1
