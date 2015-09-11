@@ -10,9 +10,8 @@ import Test.SmallCheck (Property)
 import qualified Test.SmallCheck as SC (over)
 import Test.SmallCheck.Series (Series)
 
-yin
-  :: (Monad m, Eq s, Show s, Eq a, Show a)
-  => Prism' s a -> Series m a -> Property m
+yin :: (Monad m, Eq s, Show s, Eq a, Show a)
+    => Prism' s a -> Series m a -> Property m
 yin l as = SC.over as $ \a -> preview l (review l a) == Just a
 
 yang

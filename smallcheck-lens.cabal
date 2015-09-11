@@ -2,7 +2,7 @@ name:                smallcheck-lens
 version:             0.3
 synopsis:            SmallCheck properties for lens
 description:
-  @smallcheck@ properties for @Lens@es, @Setter@s, @Traversal@s, @Iso@s and @Prism@s.
+  @SmallCheck@ properties for @Lens@es, @Setter@s, @Traversal@s, @Iso@s and @Prism@s.
 homepage:            https://github.com/jdnavarro/smallcheck-lens
 bug-reports:         https://github.com/jdnavarro/smallcheck-lens/issues
 license:             BSD3
@@ -11,7 +11,7 @@ author:              Danny Navarro
 maintainer:          j@dannynavarro.net
 category:            Testing, Lenses
 build-type:          Simple
-extra-source-files:  README.markdown CHANGELOG.markdown stack.yaml
+extra-source-files:  README.md CHANGELOG.md stack.yaml
 cabal-version:       >=1.10
 
 source-repository head
