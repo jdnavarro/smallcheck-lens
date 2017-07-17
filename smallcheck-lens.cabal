@@ -26,7 +26,7 @@ library
                        Test.SmallCheck.Lens.Prism
                        Test.SmallCheck.Lens.Setter
                        Test.SmallCheck.Lens.Traversal
-  build-depends:       base >=4.6 && <4.9,
+  build-depends:       base >=4.6 && <4.10,
                        transformers >=0.3.0.0,
                        lens >=4.1.2.1,
                        smallcheck >=1.1.1,
